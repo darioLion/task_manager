@@ -10,15 +10,30 @@
   @if (tasks().length > 0) {
     @for (task of tasks(); track task.id) {
       <div class="task-table__row">
-        <strong>{{ task.title }}</strong>
-        <span>{{ task.status }}</span>
-        <span>{{ task.priority }}</span>
-        @if (task.dueDate) {
-          <time [dateTime]="task.dueDate">{{ task.dueDate }}</time>
-        } @else {
-          <span class="text-muted">Not set</span>
-        }
-        <div class="task-table__actions" aria-label="Task actions">
+        <div class="task-table__cell task-table__cell--title">
+          <span class="task-table__label">Title</span>
+          <span>{{ task.title }}</span>
+        </div>
+        <div class="task-table__cell">
+          <span class="task-table__label">Status</span>
+          <span>{{ task.status }}</span>
+        </div>
+        <div class="task-table__cell">
+          <span class="task-table__label">Priority</span>
+          <span class="task-priority" [class]="getPriorityClass(task.priority)">
+            <span class="task-priority__icon" aria-hidden="true"></span>
+            <span class="task-priority__text">{{ task.priority }}</span>
+          </span>
+        </div>
+        <div class="task-table__cell">
+          <span class="task-table__label">Due date</span>
+          @if (task.dueDate) {
+            <time [dateTime]="task.dueDate">{{ task.dueDate }}</time>
+          } @else {
+            <span class="text-muted">Not set</span>
+          }
+        </div>
+        <div class="task-table__actions task-table__cell" aria-label="Task actions">
           <button type="button" class="btn btn-outline-secondary btn-sm" (click)="editTask.emit(task)">
             Edit
           </button>

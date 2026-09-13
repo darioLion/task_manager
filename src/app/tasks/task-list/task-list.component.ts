@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 
-import { Task } from '../models/task.model';
+import { Task, TaskPriority } from '../models/task.model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -12,4 +12,8 @@ export class TaskListComponent {
   readonly deleteTask = output<Task>();
   readonly editTask = output<Task>();
   readonly tasks = input.required<readonly Task[]>();
+
+  protected getPriorityClass(priority: TaskPriority): string {
+    return `task-priority--${priority.toLowerCase()}`;
+  }
 }

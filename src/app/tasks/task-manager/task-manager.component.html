@@ -8,11 +8,13 @@
   </div>
 
   @if (isFormOpen()) {
-    <app-task-form
-      [task]="editingTask()"
-      (save)="saveTask($event)"
-      (cancel)="closeForm()"
-    />
+    <div #formScrollTarget class="task-form-anchor">
+      <app-task-form
+        [task]="editingTask()"
+        (save)="saveTask($event)"
+        (cancel)="closeForm()"
+      />
+    </div>
   }
 
   <app-task-list

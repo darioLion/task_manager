@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  inject,
+  signal,
+  viewChild,
+} from '@angular/core';
 
 import { TaskStorageService } from '../../core/storage/task-storage.service';
 import { Task, TaskDraft } from '../models/task.model';
@@ -16,6 +23,7 @@ export class TaskManagerComponent {
   private readonly taskStorage = inject(TaskStorageService);
 
   protected readonly editingTask = signal<Task | null>(null);
+  protected readonly formScrollTarget = viewChild<ElementRef<HTMLElement>>('formScrollTarget');
   protected readonly isFormOpen = signal(false);
   protected readonly taskPendingDelete = signal<Task | null>(null);
   protected readonly tasks = this.taskStorage.tasks;
@@ -43,6 +51,7 @@ export class TaskManagerComponent {
   protected openCreateForm(): void {
     this.editingTask.set(null);
     this.isFormOpen.set(true);
+    this.scrollToForm();
   }
 
   protected openDeleteConfirmation(task: Task): void {
@@ -52,6 +61,7 @@ export class TaskManagerComponent {
   protected openEditForm(task: Task): void {
     this.editingTask.set(task);
     this.isFormOpen.set(true);
+    this.scrollToForm();
   }
 
   protected saveTask(draft: TaskDraft): void {
@@ -64,5 +74,16 @@ export class TaskManagerComponent {
     }
 
     this.closeForm();
+  }
+
+  private scrollToForm(): void {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        this.formScrollTarget()?.nativeElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      });
+    });
   }
 }
