@@ -1,6 +1,10 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
-import { NavigationComponent, NavigationItemId } from './layout/navigation/navigation.component';
+import {
+  NAVIGATION_ITEMS,
+  NavigationComponent,
+  NavigationItemId,
+} from './layout/navigation/navigation.component';
 import { TaskManagerComponent } from './tasks/task-manager/task-manager.component';
 
 @Component({
@@ -12,6 +16,13 @@ import { TaskManagerComponent } from './tasks/task-manager/task-manager.componen
 })
 export class App {
   protected readonly activeNavigationItem = signal<NavigationItemId>('task-manager');
+  protected readonly navigationTitleById = NAVIGATION_ITEMS.reduce(
+    (titles, item) => ({
+      ...titles,
+      [item.id]: item.label,
+    }),
+    {} as Record<NavigationItemId, string>,
+  );
 
   protected selectNavigationItem(itemId: NavigationItemId): void {
     this.activeNavigationItem.set(itemId);

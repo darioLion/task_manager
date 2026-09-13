@@ -12,11 +12,21 @@ export type NavigationItemId =
   | 'logout';
 
 interface NavigationItem {
-  readonly disabled?: boolean;
   readonly icon: string;
   readonly id: NavigationItemId;
   readonly label: string;
 }
+
+export const NAVIGATION_ITEMS: readonly NavigationItem[] = [
+  { id: 'task-manager', icon: 'bi-list-check', label: 'Task Manager' },
+  { id: 'kredite', icon: 'bi-cash-stack', label: 'Kredite' },
+  { id: 'documents', icon: 'bi-file-earmark-arrow-up', label: 'Dokumente hochladen' },
+  { id: 'profile', icon: 'bi-person-circle', label: 'Persönliche Daten' },
+  { id: 'email', icon: 'bi-envelope', label: 'E-Mail ändern' },
+  { id: 'password', icon: 'bi-pencil-square', label: 'Kennwort ändern' },
+  { id: 'referral', icon: 'bi-person-raised-hand', label: 'Kunden werben' },
+  { id: 'logout', icon: 'bi-box-arrow-right', label: 'Abmelden' },
+];
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,17 +41,8 @@ export class NavigationComponent {
   readonly itemSelected = output<NavigationItemId>();
 
   protected readonly isMenuOpen = signal(false);
+  protected readonly navigationItems = NAVIGATION_ITEMS;
   protected readonly sidebarOffset = signal(this.desktopHeaderHeight);
-  protected readonly navigationItems: readonly NavigationItem[] = [
-    { id: 'task-manager', icon: 'bi-list-check', label: 'Task Manager' },
-    { disabled: true, id: 'kredite', icon: 'bi-cash-stack', label: 'Kredite' },
-    { disabled: true, id: 'documents', icon: 'bi-file-earmark-arrow-up', label: 'Dokumente hochladen' },
-    { disabled: true, id: 'profile', icon: 'bi-person-circle', label: 'Persönliche Daten' },
-    { disabled: true, id: 'email', icon: 'bi-envelope', label: 'E-Mail ändern' },
-    { disabled: true, id: 'password', icon: 'bi-pencil-square', label: 'Kennwort ändern' },
-    { disabled: true, id: 'referral', icon: 'bi-person-raised-hand', label: 'Kunden werben' },
-    { disabled: true, id: 'logout', icon: 'bi-box-arrow-right', label: 'Abmelden' },
-  ];
 
   protected selectNavigationItem(itemId: NavigationItemId): void {
     this.itemSelected.emit(itemId);
