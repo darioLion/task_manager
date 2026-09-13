@@ -8,19 +8,6 @@
       </div>
     </div>
 
-    <button
-      type="button"
-      class="menu-toggle"
-      [attr.aria-expanded]="isMenuOpen()"
-      aria-controls="primary-navigation"
-      aria-label="Toggle navigation"
-      (click)="toggleMenu()"
-    >
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-
     <section class="user-summary" aria-label="User summary">
       <div>
         <span class="user-summary__label">Hallo,</span>
@@ -33,25 +20,10 @@
     </section>
   </header>
 
-  <nav
-    id="primary-navigation"
-    class="sidebar"
-    [class.sidebar--open]="isMenuOpen()"
-    aria-label="Primary navigation"
-  >
-    @for (item of navigationItems; track item.id) {
-      <button
-        type="button"
-        class="sidebar__item"
-        [class.sidebar__item--active]="activeNavigationItem() === item.id"
-        [disabled]="item.disabled"
-        (click)="selectNavigationItem(item.id)"
-      >
-        <i class="sidebar__icon bi {{ item.icon }}" aria-hidden="true"></i>
-        <span>{{ item.label }}</span>
-      </button>
-    }
-  </nav>
+  <app-navigation
+    [activeItem]="activeNavigationItem()"
+    (itemSelected)="selectNavigationItem($event)"
+  />
 
   <main class="app-main">
     @if (activeNavigationItem() === 'task-manager') {
@@ -64,19 +36,7 @@
           <button type="button" class="btn btn-primary" disabled>Add Task</button>
         </div>
 
-        <div class="task-preview" aria-label="Task table placeholder">
-          <div class="task-preview__row task-preview__row--head">
-            <span>Title</span>
-            <span>Status</span>
-            <span>Priority</span>
-            <span>Due date</span>
-            <span>Actions</span>
-          </div>
-          <div class="task-preview__empty">
-            <h2>No tasks yet</h2>
-            <p>The task table will appear here after the CRUD layer is added.</p>
-          </div>
-        </div>
+        <app-task-list [tasks]="tasks()" />
       </section>
     }
   </main>

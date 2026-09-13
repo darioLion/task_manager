@@ -1,0 +1,29 @@
+<div class="task-table" aria-label="Task list">
+  <div class="task-table__row task-table__row--head">
+    <span>Title</span>
+    <span>Status</span>
+    <span>Priority</span>
+    <span>Due date</span>
+    <span>Actions</span>
+  </div>
+
+  @if (tasks().length > 0) {
+    @for (task of tasks(); track task.id) {
+      <div class="task-table__row">
+        <strong>{{ task.title }}</strong>
+        <span>{{ task.status }}</span>
+        <span>{{ task.priority }}</span>
+        <time [dateTime]="task.dueDate">{{ task.dueDate }}</time>
+        <div class="task-table__actions" aria-label="Task actions">
+          <button type="button" class="btn btn-outline-secondary btn-sm" disabled>Edit</button>
+          <button type="button" class="btn btn-outline-danger btn-sm" disabled>Delete</button>
+        </div>
+      </div>
+    }
+  } @else {
+    <div class="task-table__empty">
+      <h2>No tasks yet</h2>
+      <p>Create your first task to see it in this list.</p>
+    </div>
+  }
+</div>

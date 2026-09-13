@@ -1,0 +1,137 @@
+:host {
+  display: block;
+}
+
+.menu-toggle {
+  display: none;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+  border: 0;
+  background: transparent;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 30px;
+  height: 3px;
+  border-radius: 3px;
+  background: #3d444b;
+}
+
+.sidebar {
+  position: fixed;
+  top: 96px;
+  left: 0;
+  bottom: 0;
+  width: 280px;
+  overflow-y: auto;
+  background: #fff;
+  border-right: 1px solid #dde3ea;
+}
+
+.sidebar__item {
+  display: flex;
+  min-height: 76px;
+  align-items: center;
+  gap: 10px;
+  padding: 0 32px;
+  border: 0;
+  border-bottom: 1px solid #edf0f3;
+  background: #fff;
+  color: #7a828b;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.sidebar__item:disabled {
+  opacity: 0.65;
+}
+
+.sidebar__item--active {
+  color: #0d6efd;
+  background: #f8fbff;
+}
+
+.sidebar__icon {
+  display: inline-flex;
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 34px;
+  border-radius: 6px;
+  font-size: 25px;
+  font-weight: 800;
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .sidebar {
+    position: static;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-right: 0;
+    border-bottom: 1px solid #dde3ea;
+  }
+
+  .sidebar__item {
+    min-height: 66px;
+    padding: 0 28px;
+    border-right: 1px solid #edf0f3;
+  }
+}
+
+@media (max-width: 991px) {
+  .menu-toggle {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    display: flex;
+  }
+
+  .sidebar {
+    position: static;
+    display: none;
+    width: 100%;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-right: 0;
+    border-bottom: 1px solid #dde3ea;
+  }
+
+  .sidebar--open {
+    display: grid;
+  }
+
+  .sidebar__item {
+    min-height: 66px;
+    padding: 0 14px;
+    border-right: 1px solid #edf0f3;
+  }
+}
+
+@media (max-width: 767px) {
+  .sidebar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 567px) {
+  .menu-toggle {
+    top: 18px;
+    right: 16px;
+  }
+
+  .sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar__item {
+    min-height: 58px;
+    padding: 0 18px;
+  }
+}

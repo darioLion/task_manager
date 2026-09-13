@@ -1,0 +1,50 @@
+.task-table {
+  overflow: hidden;
+  border: 1px solid #dde3ea;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.task-table__row {
+  display: grid;
+  grid-template-columns: minmax(220px, 2fr) repeat(4, minmax(120px, 1fr));
+  gap: 16px;
+  align-items: center;
+  min-width: 760px;
+  padding: 16px 20px;
+  border-bottom: 1px solid #edf0f3;
+}
+
+.task-table__row--head {
+  color: #56616d;
+  background: #f2f5f8;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.task-table__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.task-table__empty {
+  padding: 48px 20px;
+  text-align: center;
+}
+
+.task-table__empty h2 {
+  margin: 0 0 8px;
+  font-size: 22px;
+}
+
+.task-table__empty p {
+  margin: 0;
+  color: #6d7782;
+}
+
+@media (max-width: 567px) {
+  .task-table {
+    overflow-x: auto;
+  }
+}
