@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, input, output, signal } from '@angular/core';
 
 export type NavigationItemId =
   | 'task-manager'
@@ -25,10 +25,13 @@ interface NavigationItem {
   templateUrl: './navigation.component.html',
 })
 export class NavigationComponent {
+  private readonly desktopHeaderHeight = 96;
+
   readonly activeItem = input.required<NavigationItemId>();
   readonly itemSelected = output<NavigationItemId>();
 
   protected readonly isMenuOpen = signal(false);
+  protected readonly sidebarOffset = signal(this.desktopHeaderHeight);
   protected readonly navigationItems: readonly NavigationItem[] = [
     { id: 'task-manager', icon: 'bi-list-check', label: 'Task Manager' },
     { disabled: true, id: 'kredite', icon: 'bi-cash-stack', label: 'Kredite' },
@@ -47,5 +50,10 @@ export class NavigationComponent {
 
   protected toggleMenu(): void {
     this.isMenuOpen.update((isOpen) => !isOpen);
+  }
+
+  @HostListener('window:scroll')
+  protected updateSidebarOffset(): void {
+    this.sidebarOffset.set(Math.max(0, this.desktopHeaderHeight - window.scrollY));
   }
 }

@@ -13,9 +13,15 @@
         <strong>{{ task.title }}</strong>
         <span>{{ task.status }}</span>
         <span>{{ task.priority }}</span>
-        <time [dateTime]="task.dueDate">{{ task.dueDate }}</time>
+        @if (task.dueDate) {
+          <time [dateTime]="task.dueDate">{{ task.dueDate }}</time>
+        } @else {
+          <span class="text-muted">Not set</span>
+        }
         <div class="task-table__actions" aria-label="Task actions">
-          <button type="button" class="btn btn-outline-secondary btn-sm" disabled>Edit</button>
+          <button type="button" class="btn btn-outline-secondary btn-sm" (click)="editTask.emit(task)">
+            Edit
+          </button>
           <button type="button" class="btn btn-outline-danger btn-sm" disabled>Delete</button>
         </div>
       </div>

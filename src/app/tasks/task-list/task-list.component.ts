@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 
 import { Task } from '../models/task.model';
 
@@ -9,5 +9,6 @@ import { Task } from '../models/task.model';
   templateUrl: './task-list.component.html',
 })
 export class TaskListComponent {
+  readonly editTask = output<Task>();
   readonly tasks = input.required<readonly Task[]>();
 }

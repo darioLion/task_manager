@@ -15,6 +15,7 @@
   id="primary-navigation"
   class="sidebar"
   [class.sidebar--open]="isMenuOpen()"
+  [style.--sidebar-offset.px]="sidebarOffset()"
   aria-label="Primary navigation"
 >
   @for (item of navigationItems; track item.id) {

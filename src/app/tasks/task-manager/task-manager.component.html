@@ -1,0 +1,19 @@
+<section class="content-panel" aria-labelledby="task-manager-heading">
+  <div class="content-panel__header">
+    <div>
+      <p class="eyebrow">Dashboard</p>
+      <h1 id="task-manager-heading">Task Manager</h1>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="openCreateForm()">Add Task</button>
+  </div>
+
+  @if (isFormOpen()) {
+    <app-task-form
+      [task]="editingTask()"
+      (save)="saveTask($event)"
+      (cancel)="closeForm()"
+    />
+  }
+
+  <app-task-list [tasks]="tasks()" (editTask)="openEditForm($event)" />
+</section>

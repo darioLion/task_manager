@@ -24,7 +24,7 @@
 
 .sidebar {
   position: fixed;
-  top: 96px;
+  top: var(--sidebar-offset);
   left: 0;
   bottom: 0;
   width: 280px;

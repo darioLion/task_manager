@@ -1,0 +1,47 @@
+.task-form {
+  margin-bottom: 24px;
+  padding: 20px;
+  border: 1px solid #dde3ea;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.task-form__header,
+.task-form__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.task-form__header {
+  margin-bottom: 20px;
+}
+
+.task-form__header h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.task-form__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+}
+
+.task-form__actions {
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+legend.form-label {
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+@media (max-width: 567px) {
+  .task-form__actions {
+    align-items: stretch;
+    flex-direction: column-reverse;
+  }
+}

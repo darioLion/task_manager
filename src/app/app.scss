@@ -36,8 +36,7 @@
 }
 
 .brand__tagline,
-.user-summary__label,
-.eyebrow {
+.user-summary__label {
   color: #77808a;
   font-size: 14px;
   font-weight: 600;
@@ -66,25 +65,6 @@
 .app-main {
   margin-left: 280px;
   padding: 32px;
-}
-
-.content-panel__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 24px;
-}
-
-.content-panel h1 {
-  margin: 0;
-  font-size: 32px;
-  font-weight: 800;
-}
-
-.eyebrow {
-  margin: 0 0 4px;
-  text-transform: uppercase;
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -122,15 +102,6 @@
   .user-summary {
     padding: 20px 24px;
   }
-
-  .content-panel__header {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .content-panel__header .btn {
-    width: 100%;
-  }
 }
 
 @media (max-width: 567px) {
@@ -160,9 +131,4 @@
   .app-main {
     padding: 20px 16px;
   }
-
-  .content-panel h1 {
-    font-size: 28px;
-  }
-
 }

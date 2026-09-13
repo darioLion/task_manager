@@ -1,0 +1,38 @@
+.content-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.content-panel h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: #77808a;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+  .content-panel__header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .content-panel__header .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 567px) {
+  .content-panel h1 {
+    font-size: 28px;
+  }
+}
