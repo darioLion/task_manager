@@ -17,16 +17,36 @@ export class TaskManagerComponent {
 
   protected readonly editingTask = signal<Task | null>(null);
   protected readonly isFormOpen = signal(false);
+  protected readonly taskPendingDelete = signal<Task | null>(null);
   protected readonly tasks = this.taskStorage.tasks;
+
+  protected closeDeleteConfirmation(): void {
+    this.taskPendingDelete.set(null);
+  }
 
   protected closeForm(): void {
     this.isFormOpen.set(false);
     this.editingTask.set(null);
   }
 
+  protected confirmDeleteTask(): void {
+    const task = this.taskPendingDelete();
+
+    if (!task) {
+      return;
+    }
+
+    this.taskStorage.deleteTask(task.id);
+    this.closeDeleteConfirmation();
+  }
+
   protected openCreateForm(): void {
     this.editingTask.set(null);
     this.isFormOpen.set(true);
+  }
+
+  protected openDeleteConfirmation(task: Task): void {
+    this.taskPendingDelete.set(task);
   }
 
   protected openEditForm(task: Task): void {

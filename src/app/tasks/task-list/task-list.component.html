@@ -22,7 +22,9 @@
           <button type="button" class="btn btn-outline-secondary btn-sm" (click)="editTask.emit(task)">
             Edit
           </button>
-          <button type="button" class="btn btn-outline-danger btn-sm" disabled>Delete</button>
+          <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteTask.emit(task)">
+            Delete
+          </button>
         </div>
       </div>
     }

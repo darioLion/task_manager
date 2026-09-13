@@ -9,6 +9,7 @@ import { Task } from '../models/task.model';
   templateUrl: './task-list.component.html',
 })
 export class TaskListComponent {
+  readonly deleteTask = output<Task>();
   readonly editTask = output<Task>();
   readonly tasks = input.required<readonly Task[]>();
 }
